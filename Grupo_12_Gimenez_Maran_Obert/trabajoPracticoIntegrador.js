@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-// TP INTEGRADOR: Gimenez, Maran, Obert
+// TP INTEGRADOR GRUPO 12: Lara Gimenez, María Jose Maran, Zoe Obert
 /////////////////////////////////////
 
 
@@ -195,7 +195,7 @@ function generarReporteLibros() {
 // Llamamos la función para ver el reporte
 generarReporteLibros();
 
-
+//6. . Identificación Avanzada de libros
 
 
 // 7. Función para calcular estadísticas de los libros
@@ -225,3 +225,30 @@ function calcularEstadisticas() {
 
 // Función calcularEstadisticas
 calcularEstadisticas();
+
+//8.Manejo de Cadenas
+//Crear una función normalizarDatos() que utilice métodos de strings para:
+//✓ Convertir todos los títulos a mayúsculas.
+//✓ Eliminar espacios en blanco al inicio y final de los nombres de autores.
+
+// Función para normalizar los datos
+function normalizarDatos() {
+
+// Normalizar los títulos de los libros (convertir a mayúsculas)
+    libros.forEach(libro => {
+        libro.titulo = libro.titulo.toUpperCase();
+    });
+
+// Normalizar los nombres de los autores (eliminar espacios en blanco al inicio y al final)
+    libros.forEach(libro => {
+        libro.autor = libro.autor.trim();
+    });
+
+// Normalizar los emails de los usuarios (convertir a minúsculas)
+    usuarios.forEach(usuario => {
+        usuario.email = usuario.email.toLowerCase();
+    });
+
+
+
+//9. Interfaz de Usuario por Consola
