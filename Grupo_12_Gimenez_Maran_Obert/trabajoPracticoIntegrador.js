@@ -1,4 +1,8 @@
-// Array de libros
+const prompt = require('prompt-sync')();
+// TP INTEGRADOR: Gimenez, Maran, Obert
+
+//1. Estructura de Datos
+// 1. a. Array de libros
 const libros = [
     { id: 1, titulo: "Once minutos", autor: "Paulo Coelho", año: 2003, genero: "Ficción", disponible: true },
     { id: 2, titulo: "Tal vez nunca", autor: "Colleen Hoover", año: 2023, genero: "Romance", disponible: false },
@@ -12,7 +16,7 @@ const libros = [
     { id: 10, titulo: "El hombre más rico del mundo", autor: "Rafael Vidac", año: 2015, genero: "Autoayuda", disponible: true },  
 ];
  
-// Array de usuarios
+// 1. b. Array de usuarios
 const usuarios = [
     { id: 1, nombre: "Zoe Obert", email: "zoe.obert@gmail.com", librosPrestados: [1, 2] },
     { id: 2, nombre: "Lara Gimenez", email: "lara.gimenez@gmail.com", librosPrestados: [3, 4] },
@@ -24,6 +28,15 @@ const usuarios = [
 // Verificar con console.log
 console.log("Libros:", libros);
 console.log("Usuarios:", usuarios);
+
+//2. Funciones de Gestión de Libros
+/////////////////////////////////////
+//2.a Implementar una función agregarLibro(id, titulo, autor, anio, genero) que agregue un nuevo libro al array libros.
+function agregarLibro(id, titulo, autor, año, genero) {
+    const nuevoLibro = { id, titulo, autor, año, genero, disponible: true };
+    libros.push(nuevoLibro);
+    console.log(`El libro "${titulo}" ha sido agregado.`);
+}
 
 // 3. Gestion de usuarios
 // a. Implementar una función registrarUsuario(nombre, email) que agregue un 
