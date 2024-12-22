@@ -50,6 +50,10 @@ function mostrarTodosLosUsuarios(nombre) {
 }
    console.log(usuarios)
 
+   // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertencen
+   // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
+   // Por lo tanto me referia a los ejercicio a y b del punto 3.
+
 // 4. Sistema de Prestamos
 
 // Función para prestar un libro a un usuario
