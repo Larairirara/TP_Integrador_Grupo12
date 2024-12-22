@@ -66,7 +66,16 @@ function ordenarLibros(criterio) {
     });
 }
 
-
+//2.d Desarrollar una función borrarLibro(id) que elimine el libro que se le pase por parámetro.
+function borrarLibro(id) {
+    const index = libros.findIndex(libro => libro.id === id);
+    if (index !== -1) {
+        const libroBorrado = libros.splice(index, 1);
+        console.log(`El libro "${libroBorrado[0].titulo}" ha sido eliminado.`);
+    } else {
+        console.log("No se encontró el libro con ese ID.");
+    }
+}
 
 // 3. Gestion de usuarios
 // a. Implementar una función registrarUsuario(nombre, email) que agregue un 
