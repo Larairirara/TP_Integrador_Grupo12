@@ -25,6 +25,25 @@ const usuarios = [
 console.log("Libros:", libros);
 console.log("Usuarios:", usuarios);
 
+// 3. Gestion de usuarios
+// a. Implementar una función registrarUsuario(nombre, email) que agregue un 
+//nuevo usuario al array usuarios.
+
+const usuarioNuevo = {
+    nombre: 'Rodolfo',
+    email: 'Ibañes.rodolfo@gmail.com'
+}
+function registrarUsuario(nombre, email){
+    return 'usuarioNuevo'
+};
+
+    usuarios.push(usuarioNuevo)
+    
+    console.log('Usuario registrado: ', usuarioNuevo)
+
+
+
+
 // 4. Sistema de Prestamos
 
 // Función para prestar un libro a un usuario
