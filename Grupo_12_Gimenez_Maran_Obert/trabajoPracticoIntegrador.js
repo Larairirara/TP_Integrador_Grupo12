@@ -39,10 +39,16 @@ function registrarUsuario(nombre, email){
 
     usuarios.push(usuarioNuevo)
     
-    console.log('Usuario registrado: ', usuarioNuevo)
+    console.log('Usuario nuevo registrado: ', usuarioNuevo)
 
 
+   // b.  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array 
+   //completo de usuarios
 
+function mostrarTodosLosUsuarios(nombre) {
+    return 'usuarios';
+}
+   console.log(usuarios)
 
 // 4. Sistema de Prestamos
 
