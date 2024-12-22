@@ -53,6 +53,21 @@ function buscarLibro(criterio, valor) {
     }
 }
 
+//2.c Desarrollar una función ordenarLibros(criterio) que ordene los libros por título o año utilizando el algoritmo de ordenamiento burbuja (bubble sort) y luego muestre los libros ordenados en la consola
+function ordenarLibros(criterio) {
+    if (criterio === "titulo") {
+        libros.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (criterio === "año") {
+        libros.sort((a, b) => a.año - b.año);
+    }
+    console.log(`Libros ordenados por ${criterio}:`);
+    libros.forEach(libro => {
+        console.log(`${libro.titulo} de ${libro.autor}, ${libro.año}`);
+    });
+}
+
+
+
 // 3. Gestion de usuarios
 // a. Implementar una función registrarUsuario(nombre, email) que agregue un 
 //nuevo usuario al array usuarios.
