@@ -1,5 +1,6 @@
 const prompt = require('prompt-sync')();
 // TP INTEGRADOR: Gimenez, Maran, Obert
+/////////////////////////////////////
 
 //1. Estructura de Datos
 // 1. a. Array de libros
@@ -29,6 +30,7 @@ const usuarios = [
 console.log("Libros:", libros);
 console.log("Usuarios:", usuarios);
 
+
 //2. Funciones de Gestión de Libros
 /////////////////////////////////////
 //2.a Implementar una función agregarLibro(id, titulo, autor, anio, genero) que agregue un nuevo libro al array libros.
@@ -36,6 +38,19 @@ function agregarLibro(id, titulo, autor, año, genero) {
     const nuevoLibro = { id, titulo, autor, año, genero, disponible: true };
     libros.push(nuevoLibro);
     console.log(`El libro "${titulo}" ha sido agregado.`);
+}
+
+//2.b Crear una función buscarLibro(criterio, valor) que permita buscar libros por título, autor o género utilizando el algoritmo de búsqueda lineal.
+function buscarLibro(criterio, valor) {
+    const libroEncontrado = libros.filter(libro => libro[criterio].toLowerCase().includes(valor.toLowerCase()));
+    if (libroEncontrado.length > 0) {
+        console.log("Libros encontrados:");
+        libroEncontrado.forEach(libro => {
+            console.log(`${libro.titulo} de ${libro.autor}, ${libro.año}, Género: ${libro.genero}`);
+        });
+    } else {
+        console.log("No se encontró ningún libro con ese criterio.");
+    }
 }
 
 // 3. Gestion de usuarios
