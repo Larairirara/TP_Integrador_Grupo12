@@ -91,26 +91,35 @@ function borrarLibro(id) {
 // a. Implementar una función registrarUsuario(nombre, email) que agregue un 
 //nuevo usuario al array usuarios.
 
-const usuarioNuevo = {
-    nombre: 'Rodolfo',
-    email: 'Ibañes.rodolfo@gmail.com'
+function pedirDatos() {
+    const nombre = prompt('Por favor ingrese su nombre:\n')
+    const email = prompt('Por favor ingrese su email:\n')
+    return { nombre, email }
 }
-function registrarUsuario(nombre, email){
-    return 'usuarioNuevo'
-};
+
+function registrarUsuario({ nombre, email }){
+    let usuarioNuevo = {
+        id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
+        nombre,
+        email,
+        librosPrestados: [],
+    }
 
     usuarios.push(usuarioNuevo)
-    
-    console.log('Usuario nuevo registrado: ', usuarioNuevo)
+    console.log(`Usuario nuevo registrado: ${usuarioNuevo}`)
+
+    return usuarioNuevo
+};
+
 
 
 // b.  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array 
 //completo de usuarios
 
-function mostrarTodosLosUsuarios(nombre) {
-    return 'usuarios';
+function mostrarTodosLosUsuarios() {
+    console.log(usuarios)
+    return usuarios;
 }
-   console.log(usuarios)
 
    // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertencen
    // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
