@@ -140,6 +140,22 @@ function buscarUsuario (email) {
 
 buscarUsuario(emailBuscado)
 
+
+// 3.d Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
+const usuarioEliminar = prompt('Ingrese nombre e email del usuario que desea eliminar: ')
+
+function borraUsuario(usuarioEliminar){
+ 
+ usuarios.filter (email => email !== usuarioEliminar); 
+  console.log(`El usuario ${usuarioEliminar} ha sido eliminado`);
+  return usuarioEliminar
+};
+
+
+
+borraUsuario()
+
+
 // 4. Sistema de Prestamos
 // Función para prestar un libro a un usuario
 function prestarLibro(idLibro, idUsuario) {
