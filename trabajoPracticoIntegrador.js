@@ -91,26 +91,29 @@ function borrarLibro(id) {
 
 // 3. a Implementar una función registrarUsuario(nombre, email) que agregue un nuevo usuario al array usuarios.
 
+
 function pedirDatos() {
     const nombre = prompt('Por favor ingrese su nombre: ')
     const email = prompt('Por favor ingrese su email: ')
-    return { nombre, email }
+    return { nombre, email };
 }
 
-function registrarUsuario(){
+function registrarUsuario() {
+    const { nombre, email } = pedirDatos ();
+
     let usuarioNuevo = {
         id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
-        nombre: ' ',
-        email: ' ',
+        nombre,
+        email,
         librosPrestados: [],
     }
 
-    usuarios.push(usuarioNuevo)
+    usuarios.push(usuarioNuevo);
     console.log(`Usuario nuevo registrado: ${usuarioNuevo}`)
 
-    return usuarioNuevo
+    return usuarioNuevo;
 };
-pedirDatos()
+
 registrarUsuario() 
 
 
@@ -234,10 +237,14 @@ function generarReporteLibros() {
 // Llamamos la función para ver el reporte
 generarReporteLibros();
 
+
+/////////////////////////////////////////////
+
+
 //6. . Identificación Avanzada de libros
 function librosConPalabrasEnTitulo(libros) {
-    const librosFiltrados = libros.filter (libro => {
-       return libro.titulo.split(" ").length > 1 && libro.titulo.indexOf(A-Za-z)
+    const librosFiltrados = libros.filter(function(titulo){
+       return libros.titulo.split(" ").length > 1 && /[^a-zA-Z\s]+/.test(libros.titulo)
     });
 
 
@@ -246,9 +253,6 @@ function librosConPalabrasEnTitulo(libros) {
  console.log(titulosEncontrados)
  return titulosEncontrados
 }
-
-
-
 
 
 
