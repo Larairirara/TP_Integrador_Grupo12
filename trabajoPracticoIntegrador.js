@@ -235,6 +235,21 @@ function generarReporteLibros() {
 generarReporteLibros();
 
 //6. . Identificación Avanzada de libros
+function librosConPalabrasEnTitulo(libros) {
+    const librosFiltrados = libros.filter (libro => {
+       return libro.titulo.split(" ").length > 1 && libro.titulo.indexOf(A-Za-z)
+    });
+
+
+ const titulosEncontrados = librosFiltrados.map(libro => libro.titulo);
+  
+ console.log(titulosEncontrados)
+ return titulosEncontrados
+}
+
+
+
+
 
 
 // 7. Función para calcular estadísticas de los libros
