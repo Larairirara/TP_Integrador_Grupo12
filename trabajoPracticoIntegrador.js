@@ -87,21 +87,21 @@ function borrarLibro(id) {
 
 
 // 3. Gestion de usuarios
+//////////////////////////////////////////
 
-// a. Implementar una función registrarUsuario(nombre, email) que agregue un 
-//nuevo usuario al array usuarios.
+// 3. a Implementar una función registrarUsuario(nombre, email) que agregue un nuevo usuario al array usuarios.
 
 function pedirDatos() {
-    const nombre = prompt('Por favor ingrese su nombre:\n')
-    const email = prompt('Por favor ingrese su email:\n')
+    const nombre = prompt('Por favor ingrese su nombre: ')
+    const email = prompt('Por favor ingrese su email: ')
     return { nombre, email }
 }
 
-function registrarUsuario({ nombre, email }){
+function registrarUsuario(){
     let usuarioNuevo = {
         id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
-        nombre,
-        email,
+        nombre: ' ',
+        email: ' ',
         librosPrestados: [],
     }
 
@@ -110,11 +110,11 @@ function registrarUsuario({ nombre, email }){
 
     return usuarioNuevo
 };
+pedirDatos()
+registrarUsuario() 
 
 
-
-// b.  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array 
-//completo de usuarios
+// 3.b  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
 
 function mostrarTodosLosUsuarios() {
     console.log(usuarios)
@@ -259,5 +259,5 @@ function normalizarDatos() {
     });
 
 
-
+}
 //9. Interfaz de Usuario por Consola
