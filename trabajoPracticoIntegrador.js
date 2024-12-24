@@ -119,12 +119,26 @@ registrarUsuario()
 function mostrarTodosLosUsuarios() {
     console.log(usuarios)
     return usuarios;
-}
+};
 
    // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertencen
    // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
-   // Por lo tanto me referia a los ejercicio a y b del punto 3.
+   // Por lo tanto me referia a los ejercicios a y b del punto 3.
 
+   // 3. c) Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
+
+   let emailBuscado = prompt('Ingrese email para busqueda: ')
+    
+
+function buscarUsuario (email) {
+    emailBuscado = usuarios.find(emailBuscado => {
+        console.log( 'Resultado de busqueda: ', emailBuscado);
+        return emailBuscado === 'id, name, email, libros prestados'
+    });
+};
+
+
+buscarUsuario(emailBuscado)
 
 // 4. Sistema de Prestamos
 // Función para prestar un libro a un usuario
