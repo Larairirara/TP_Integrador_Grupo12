@@ -93,14 +93,12 @@ function borrarLibro(id) {
 
 
 function pedirDatos() {
-    const nombre = prompt('Por favor ingrese su nombre: ')
-    const email = prompt('Por favor ingrese su email: ')
+    const nombre = prompt('Por favor ingrese su nombre:\n')
+    const email = prompt('Por favor ingrese su email:\n')
     return { nombre, email };
 }
 
-function registrarUsuario() {
-    const { nombre, email } = pedirDatos ();
-
+function registrarUsuario({ nombre, email }) {
     let usuarioNuevo = {
         id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
         nombre,
@@ -109,12 +107,13 @@ function registrarUsuario() {
     }
 
     usuarios.push(usuarioNuevo);
-    console.log(`Usuario nuevo registrado: ${usuarioNuevo}`)
+    console.log('Usuario nuevo registrado:', usuarioNuevo)
 
     return usuarioNuevo;
 };
 
-registrarUsuario() 
+const datos = pedirDatos()
+registrarUsuario(datos)
 
 
 // 3.b  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
@@ -128,35 +127,36 @@ function mostrarTodosLosUsuarios() {
    // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
    // Por lo tanto me referia a los ejercicios a y b del punto 3.
 
-   // 3. c) Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
+// 3. c) Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
 
-   let emailBuscado = prompt('Ingrese email para busqueda: ')
-    
+let emailBuscado = prompt('Ingrese email para busqueda:\n')
 
 function buscarUsuario (email) {
-    emailBuscado = usuarios.find(emailBuscado => {
-        console.log( 'Resultado de busqueda: ', emailBuscado);
-        return emailBuscado === 'id, name, email, libros prestados'
-    });
+    resultado = usuarios.find(usuario => usuario.email === email);
+
+    if (resultado) {
+        console.log('Resultado de busqueda:\n', resultado);
+    } else {
+        console.log('Ningún usuario con el email indicado fue encontrado.')
+    }
+
+    return resultado
 };
-
-
-buscarUsuario(emailBuscado)
 
 
 // 3.d Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
-const usuarioEliminar = prompt('Ingrese nombre e email del usuario que desea eliminar: ')
 
-function borraUsuario(usuarioEliminar){
- 
- usuarios.filter (email => email !== usuarioEliminar); 
-  console.log(`El usuario ${usuarioEliminar} ha sido eliminado`);
-  return usuarioEliminar
+const usuarioSeleccionado = buscarUsuario(emailBuscado)
+
+function borrarUsuario({ nombre, email }){
+    const indiceAEliminar = usuarios.indexOf(usuario => usuario.nombre === nombre && usuario.email === email)
+
+    usuarios.splice(indiceAEliminar, 1) 
+    console.log(`El usuario ${email} ha sido eliminado`);
+    return 
 };
 
-
-
-borraUsuario()
+borrarUsuario(usuarioSeleccionado)
 
 
 // 4. Sistema de Prestamos
@@ -242,18 +242,19 @@ generarReporteLibros();
 
 
 //6. . Identificación Avanzada de libros
-function librosConPalabrasEnTitulo(libros) {
-    const librosFiltrados = libros.filter(function(titulo){
-       return libros.titulo.split(" ").length > 1 && /[^a-zA-Z\s]+/.test(libros.titulo)
+
+function librosConPalabrasEnTitulo(_libros) {
+    const librosFiltrados = _libros.filter(libro => {
+       return libro.titulo.split(" ").length > 1 && /^[\p{L}\s]+$/u.test(libro.titulo)
     });
 
-
- const titulosEncontrados = librosFiltrados.map(libro => libro.titulo);
+    const titulosEncontrados = librosFiltrados.map(libro => libro.titulo);
   
- console.log(titulosEncontrados)
- return titulosEncontrados
+    console.log(titulosEncontrados)
+    return titulosEncontrados
 }
 
+librosConPalabrasEnTitulo(libros)
 
 
 // 7. Función para calcular estadísticas de los libros
