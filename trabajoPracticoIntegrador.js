@@ -35,16 +35,15 @@ console.log("Usuarios:", usuarios);
 
 
 // 2. Funciones de Gestión de Libros
-/////////////////////////////////////
 
-// 2.a Implementar una función agregarLibro(id, titulo, autor, año, genero) que agregue un nuevo libro al array libros.
+// 2.a Función para agregar un nuevo libro
 function agregarLibro(id, titulo, autor, año, genero) {
     const nuevoLibro = { id, titulo, autor, año, genero, disponible: true };
     libros.push(nuevoLibro);
     console.log(`El libro "${titulo}" ha sido agregado.`);
 }
 
-// 2.b Crear una función buscarLibro(criterio, valor) que permita buscar libros por título, autor o género utilizando el algoritmo de búsqueda lineal.
+// 2.b Función para buscar un libro por título, autor o género
 function buscarLibro(criterio, valor) {
     const libroEncontrado = libros.filter(libro => libro[criterio].toLowerCase().includes(valor.toLowerCase()));
     if (libroEncontrado.length > 0) {
@@ -57,7 +56,7 @@ function buscarLibro(criterio, valor) {
     }
 }
 
-// 2.c Desarrollar una función ordenarLibros(criterio) que ordene los libros por título o año utilizando el algoritmo de ordenamiento burbuja (bubble sort) y luego muestre los libros ordenados en la consola.
+// 2.c Función para ordenar los libros por título o año
 function ordenarLibros(criterio) {
     if (criterio === "titulo") {
         libros.sort((a, b) => a.titulo.localeCompare(b.titulo));
@@ -70,96 +69,54 @@ function ordenarLibros(criterio) {
     });
 }
 
-// 2.d Desarrollar una función borrarLibro(id) que elimine el libro que se le pase por parámetro.
+// 2.d Función para borrar un libro por ID
 function borrarLibro(id) {
     const index = libros.findIndex(libro => libro.id === id);
     if (index !== -1) {
         const libroBorrado = libros.splice(index, 1);
-        console.log(`El libro "${libroBorrado
-
-
-
-//////////////////////////////////////////
-// 3. Gestion de usuarios
-//////////////////////////////////////////
-
-// Array de usuarios
-let usuarios = [];
-
-// 3. a) Implementar una función registrarUsuario(nombre, email) que agregue un nuevo usuario al array usuarios.
-function pedirDatos() {
-    const nombre = prompt('Por favor ingrese su nombre:\n');
-    const email = prompt('Por favor ingrese su email:\n');
-    
-    // Validación básica
-    if (!nombre || !email) {
-        alert('Debe ingresar tanto nombre como email.');
-        return;
+        console.log(`El libro "${libroBorrado[0].titulo}" ha sido borrado.`);
+    } else {
+        console.log("No se encontró el libro para borrar.");
     }
-
-    return { nombre, email };
 }
 
+// 3. Funciones de Gestión de Usuarios
+
+// 3.a Función para registrar un usuario
 function registrarUsuario({ nombre, email }) {
-    // Verificar si usuarios está vacío y asignar ID apropiado
-    let idNuevo = usuarios.length === 0 ? 1 : usuarios[usuarios.length - 1].id + 1;
-    
-    let usuarioNuevo = {
-        id: idNuevo,
-        nombre,
-        email,
-        librosPrestados: [],
-    };
-
+    const idNuevo = usuarios.length === 0 ? 1 : usuarios[usuarios.length - 1].id + 1;
+    const usuarioNuevo = { id: idNuevo, nombre, email, librosPrestados: [] };
     usuarios.push(usuarioNuevo);
-    console.log('Usuario nuevo registrado:', usuarioNuevo);
-
+    console.log('Usuario registrado:', usuarioNuevo);
     return usuarioNuevo;
 }
 
-const datos = pedirDatos();
-if (datos) registrarUsuario(datos);
-
-
-// 3. b) Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
+// 3.b Función para mostrar todos los usuarios
 function mostrarTodosLosUsuarios() {
     console.log(usuarios);
     return usuarios;
 }
 
-
-// 3. c) Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
-let emailBuscado = prompt('Ingrese email para busqueda:\n');
-
+// 3.c Función para buscar un usuario por email
 function buscarUsuario(email) {
     const resultado = usuarios.find(usuario => usuario.email === email);
-
     if (resultado) {
-        console.log('Resultado de búsqueda:\n', resultado);
+        console.log('Resultado de búsqueda:', resultado);
     } else {
-        console.log('Ningún usuario con el email indicado fue encontrado.');
+        console.log('No se encontró el usuario.');
     }
-
     return resultado;
 }
 
-
-// 3. d) Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
-const usuarioSeleccionado = buscarUsuario(emailBuscado);
-
+// 3.d Función para borrar un usuario
 function borrarUsuario({ nombre, email }) {
-    const indiceAEliminar = usuarios.findIndex(usuario => usuario.nombre === nombre && usuario.email === email);
-
-    if (indiceAEliminar !== -1) {
-        usuarios.splice(indiceAEliminar, 1);
-        console.log(`El usuario ${nombre} con email ${email} ha sido eliminado`);
+    const index = usuarios.findIndex(usuario => usuario.nombre === nombre && usuario.email === email);
+    if (index !== -1) {
+        usuarios.splice(index, 1);
+        console.log(`El usuario ${nombre} con email ${email} ha sido eliminado.`);
     } else {
         console.log('No se encontró el usuario para eliminar.');
     }
-}
-
-if (usuarioSeleccionado) {
-    borrarUsuario(usuarioSeleccionado);
 }
 
 // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertenecen
