@@ -34,18 +34,17 @@ console.log("Libros:", libros);
 console.log("Usuarios:", usuarios);
 
 
-//2. Funciones de Gestión de Libros
+// 2. Funciones de Gestión de Libros
 /////////////////////////////////////
 
-//2.a Implementar una función agregarLibro(id, titulo, autor, anio, genero) que agregue un nuevo libro al array libros.
+// 2.a Implementar una función agregarLibro(id, titulo, autor, año, genero) que agregue un nuevo libro al array libros.
 function agregarLibro(id, titulo, autor, año, genero) {
     const nuevoLibro = { id, titulo, autor, año, genero, disponible: true };
     libros.push(nuevoLibro);
     console.log(`El libro "${titulo}" ha sido agregado.`);
 }
 
-
-//2.b Crear una función buscarLibro(criterio, valor) que permita buscar libros por título, autor o género utilizando el algoritmo de búsqueda lineal.
+// 2.b Crear una función buscarLibro(criterio, valor) que permita buscar libros por título, autor o género utilizando el algoritmo de búsqueda lineal.
 function buscarLibro(criterio, valor) {
     const libroEncontrado = libros.filter(libro => libro[criterio].toLowerCase().includes(valor.toLowerCase()));
     if (libroEncontrado.length > 0) {
@@ -58,8 +57,7 @@ function buscarLibro(criterio, valor) {
     }
 }
 
-
-//2.c Desarrollar una función ordenarLibros(criterio) que ordene los libros por título o año utilizando el algoritmo de ordenamiento burbuja (bubble sort) y luego muestre los libros ordenados en la consola
+// 2.c Desarrollar una función ordenarLibros(criterio) que ordene los libros por título o año utilizando el algoritmo de ordenamiento burbuja (bubble sort) y luego muestre los libros ordenados en la consola.
 function ordenarLibros(criterio) {
     if (criterio === "titulo") {
         libros.sort((a, b) => a.titulo.localeCompare(b.titulo));
@@ -72,17 +70,12 @@ function ordenarLibros(criterio) {
     });
 }
 
-
-//2.d Desarrollar una función borrarLibro(id) que elimine el libro que se le pase por parámetro.
+// 2.d Desarrollar una función borrarLibro(id) que elimine el libro que se le pase por parámetro.
 function borrarLibro(id) {
     const index = libros.findIndex(libro => libro.id === id);
     if (index !== -1) {
         const libroBorrado = libros.splice(index, 1);
-        console.log(`El libro "${libroBorrado[0].titulo}" ha sido eliminado.`);
-    } else {
-        console.log("No se encontró el libro con ese ID.");
-    }
-}
+        console.log(`El libro "${libroBorrado
 
 
 
