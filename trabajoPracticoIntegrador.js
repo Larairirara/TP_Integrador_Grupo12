@@ -79,77 +79,92 @@ function borrarLibro(id) {
 
 
 
+//////////////////////////////////////////
 // 3. Gestion de usuarios
 //////////////////////////////////////////
 
-// 3. a Implementar una función registrarUsuario(nombre, email) que agregue un nuevo usuario al array usuarios.
+// Array de usuarios
+let usuarios = [];
 
-
+// 3. a) Implementar una función registrarUsuario(nombre, email) que agregue un nuevo usuario al array usuarios.
 function pedirDatos() {
-    const nombre = prompt('Por favor ingrese su nombre:\n')
-    const email = prompt('Por favor ingrese su email:\n')
+    const nombre = prompt('Por favor ingrese su nombre:\n');
+    const email = prompt('Por favor ingrese su email:\n');
+    
+    // Validación básica
+    if (!nombre || !email) {
+        alert('Debe ingresar tanto nombre como email.');
+        return;
+    }
+
     return { nombre, email };
 }
 
 function registrarUsuario({ nombre, email }) {
+    // Verificar si usuarios está vacío y asignar ID apropiado
+    let idNuevo = usuarios.length === 0 ? 1 : usuarios[usuarios.length - 1].id + 1;
+    
     let usuarioNuevo = {
-        id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
+        id: idNuevo,
         nombre,
         email,
         librosPrestados: [],
-    }
+    };
 
     usuarios.push(usuarioNuevo);
-    console.log('Usuario nuevo registrado:', usuarioNuevo)
+    console.log('Usuario nuevo registrado:', usuarioNuevo);
 
     return usuarioNuevo;
-};
+}
 
-const datos = pedirDatos()
-registrarUsuario(datos)
+const datos = pedirDatos();
+if (datos) registrarUsuario(datos);
 
 
-// 3.b  Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
-
+// 3. b) Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
 function mostrarTodosLosUsuarios() {
-    console.log(usuarios)
+    console.log(usuarios);
     return usuarios;
-};
+}
 
-   // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertencen
-   // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
-   // Por lo tanto me referia a los ejercicios a y b del punto 3.
 
 // 3. c) Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
+let emailBuscado = prompt('Ingrese email para busqueda:\n');
 
-let emailBuscado = prompt('Ingrese email para busqueda:\n')
-
-function buscarUsuario (email) {
-    resultado = usuarios.find(usuario => usuario.email === email);
+function buscarUsuario(email) {
+    const resultado = usuarios.find(usuario => usuario.email === email);
 
     if (resultado) {
-        console.log('Resultado de busqueda:\n', resultado);
+        console.log('Resultado de búsqueda:\n', resultado);
     } else {
-        console.log('Ningún usuario con el email indicado fue encontrado.')
+        console.log('Ningún usuario con el email indicado fue encontrado.');
     }
 
-    return resultado
-};
+    return resultado;
+}
 
 
-// 3.d Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
+// 3. d) Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
+const usuarioSeleccionado = buscarUsuario(emailBuscado);
 
-const usuarioSeleccionado = buscarUsuario(emailBuscado)
+function borrarUsuario({ nombre, email }) {
+    const indiceAEliminar = usuarios.findIndex(usuario => usuario.nombre === nombre && usuario.email === email);
 
-function borrarUsuario({ nombre, email }){
-    const indiceAEliminar = usuarios.indexOf(usuario => usuario.nombre === nombre && usuario.email === email)
+    if (indiceAEliminar !== -1) {
+        usuarios.splice(indiceAEliminar, 1);
+        console.log(`El usuario ${nombre} con email ${email} ha sido eliminado`);
+    } else {
+        console.log('No se encontró el usuario para eliminar.');
+    }
+}
 
-    usuarios.splice(indiceAEliminar, 1) 
-    console.log(`El usuario ${email} ha sido eliminado`);
-    return 
-};
+if (usuarioSeleccionado) {
+    borrarUsuario(usuarioSeleccionado);
+}
 
-borrarUsuario(usuarioSeleccionado)
+// IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertenecen
+// al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
+// Por lo tanto me referia a los ejercicios a y b del punto 3.
 
 
 // 4. Sistema de Prestamos
