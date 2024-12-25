@@ -278,8 +278,6 @@ function normalizarDatos() {
 // 9. Interfaz de Usuario por Consola
 // Punto 9: Interfaz de Usuario por Consola
 
-const prompt = require('prompt-sync')();
-
 // Función para mostrar el menú
 function mostrarMenu() {
     console.log("\nElige una opción:");
