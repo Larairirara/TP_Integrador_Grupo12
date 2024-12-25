@@ -275,47 +275,53 @@ function normalizarDatos() {
 
 
 }
-//9. Interfaz de Usuario por Consola
+// 9. Interfaz de Usuario por Consola
 // Punto 9: Interfaz de Usuario por Consola
 
-// Función para mostrar el menú principal y manejar la interacción con el usuario
-function menuPrincipal() {
-    let opcion; // Variable para almacenar la opción seleccionada por el usuario
-    
-    do {
-        // Mostrar el menú con las opciones disponibles
-        console.log("Menú Principal:");
-        console.log("1. Opción 1");
-        console.log("2. Opción 2");
-        console.log("3. Opción 3");
-        console.log("4. Salir");
-        
-        // Solicitar al usuario que ingrese una opción
-        opcion = prompt("Seleccione una opción:");
+const prompt = require('prompt-sync')();
 
-        // Usar switch para manejar las opciones del menú
-        switch (opcion) {
-            case "1":
-                console.log("Has seleccionado la Opción 1.");
-                // Lógica para la opción 1
-                break;
-            case "2":
-                console.log("Has seleccionado la Opción 2.");
-                // Lógica para la opción 2
-                break;
-            case "3":
-                console.log("Has seleccionado la Opción 3.");
-                // Lógica para la opción 3
-                break;
-            case "4":
-                console.log("Saliendo del sistema...");
-                break;
-            default:
-                console.log("Opción no válida. Por favor, elige una opción correcta.");
-                break;
-        }
-    } while (opcion !== "4"); // El bucle continuará hasta que el usuario elija la opción 4
+// Función para mostrar el menú
+function mostrarMenu() {
+    console.log("\nElige una opción:");
+    console.log("1. Buscar libro");
+    console.log("2. Prestar libro");
+    console.log("3. Devolver libro");
+    console.log("4. Generar reporte de libros");
+    console.log("5. Salir");
 }
 
-// Llamar a la función para iniciar el menú principal
-menuPrincipal();
+// Función principal para manejar las opciones del menú
+function ejecutarOpcion(opcion) {
+    switch (opcion) {
+        case '1':
+            console.log("Buscando libro...");
+            break;
+        case '2':
+            console.log("Prestar libro...");
+            break;
+        case '3':
+            console.log("Devolver libro...");
+            break;
+        case '4':
+            console.log("Generando reporte de libros...");
+            break;
+        case '5':
+            console.log("Saliendo del programa.");
+            process.exit();
+            break;
+        default:
+            console.log("Opción inválida. Intenta de nuevo.");
+    }
+}
+
+// Ciclo principal que muestra el menú y espera la elección
+function iniciar() {
+    while (true) {
+        mostrarMenu();
+        const opcionSeleccionada = prompt("Elige una opción (1-5): ");
+        ejecutarOpcion(opcionSeleccionada);
+    }
+}
+
+// Iniciar el programa
+iniciar();
