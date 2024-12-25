@@ -319,3 +319,46 @@ function normalizarDatos() {
 
 }
 //9. Interfaz de Usuario por Consola
+// Punto 9: Interfaz de Usuario por Consola
+
+// Función para mostrar el menú principal y manejar la interacción con el usuario
+function menuPrincipal() {
+    let opcion; // Variable para almacenar la opción seleccionada por el usuario
+    
+    do {
+        // Mostrar el menú con las opciones disponibles
+        console.log("Menú Principal:");
+        console.log("1. Opción 1");
+        console.log("2. Opción 2");
+        console.log("3. Opción 3");
+        console.log("4. Salir");
+        
+        // Solicitar al usuario que ingrese una opción
+        opcion = prompt("Seleccione una opción:");
+
+        // Usar switch para manejar las opciones del menú
+        switch (opcion) {
+            case "1":
+                console.log("Has seleccionado la Opción 1.");
+                // Lógica para la opción 1
+                break;
+            case "2":
+                console.log("Has seleccionado la Opción 2.");
+                // Lógica para la opción 2
+                break;
+            case "3":
+                console.log("Has seleccionado la Opción 3.");
+                // Lógica para la opción 3
+                break;
+            case "4":
+                console.log("Saliendo del sistema...");
+                break;
+            default:
+                console.log("Opción no válida. Por favor, elige una opción correcta.");
+                break;
+        }
+    } while (opcion !== "4"); // El bucle continuará hasta que el usuario elija la opción 4
+}
+
+// Llamar a la función para iniciar el menú principal
+menuPrincipal();
