@@ -277,8 +277,8 @@ function normalizarDatos() {
 }
 // 9. Interfaz de Usuario por Consola
 // Punto 9: Interfaz de Usuario por Consola
-
 // Función para mostrar el menú
+
 function mostrarMenu() {
     console.log("\nElige una opción:");
     console.log("1. Buscar libro");
@@ -288,31 +288,37 @@ function mostrarMenu() {
     console.log("5. Salir");
 }
 
-// Función principal para manejar las opciones del menú
+// Función principal que ejecuta las opciones del menú
 function ejecutarOpcion(opcion) {
     switch (opcion) {
         case '1':
-            console.log("Buscando libro...");
+            const criterio = prompt("¿Qué criterio deseas usar para buscar? (titulo/autor/genero): ");
+            const valor = prompt("Introduce el valor a buscar: ");
+            buscarLibro(criterio, valor); // Llamada a la función buscarLibro
             break;
         case '2':
-            console.log("Prestar libro...");
+            const idLibro = parseInt(prompt("Introduce el ID del libro a prestar: "));
+            const idUsuario = parseInt(prompt("Introduce el ID del usuario: "));
+            prestarLibro(idLibro, idUsuario); // Llamada a la función prestarLibro
             break;
         case '3':
-            console.log("Devolver libro...");
+            const idLibroDevolver = parseInt(prompt("Introduce el ID del libro a devolver: "));
+            const idUsuarioDevolver = parseInt(prompt("Introduce el ID del usuario: "));
+            devolverLibro(idLibroDevolver, idUsuarioDevolver); // Llamada a la función devolverLibro
             break;
         case '4':
-            console.log("Generando reporte de libros...");
+            generarReporteLibros(); // Llamada a la función generarReporteLibros
             break;
         case '5':
             console.log("Saliendo del programa.");
-            process.exit();
+            process.exit(); // Termina el programa
             break;
         default:
-            console.log("Opción inválida. Intenta de nuevo.");
+            console.log("Opción inválida, por favor selecciona nuevamente.");
     }
 }
 
-// Ciclo principal que muestra el menú y espera la elección
+// Ciclo para mostrar el menú y ejecutar la opción seleccionada
 function iniciar() {
     while (true) {
         mostrarMenu();
@@ -321,5 +327,4 @@ function iniciar() {
     }
 }
 
-// Iniciar el programa
 iniciar();
