@@ -30,8 +30,8 @@ const usuarios = [
 ];
 
 // Verificar con console.log
-console.log("Libros:", libros);
-console.log("Usuarios:", usuarios);
+//console.log("Libros:", libros);
+//console.log("Usuarios:", usuarios);
 
 
 // 2. Funciones de Gestión de Libros
@@ -83,13 +83,29 @@ function borrarLibro(id) {
 // 3. Funciones de Gestión de Usuarios
 
 // 3.a Función para registrar un usuario
+
+function pedirDatos() {
+    const nombre = prompt('Por favor ingrese su nombre:');
+    const email = prompt('Por favor ingrese su email:');
+    return { nombre, email };
+}
+
 function registrarUsuario({ nombre, email }) {
-    const idNuevo = usuarios.length === 0 ? 1 : usuarios[usuarios.length - 1].id + 1;
-    const usuarioNuevo = { id: idNuevo, nombre, email, librosPrestados: [] };
+    let usuarioNuevo = {
+        id: usuarios[usuarios.length - 1].id + 1, // Busca ID del último usuario y le suma 1
+        nombre,
+        email,
+        librosPrestados: [],
+    };
+
     usuarios.push(usuarioNuevo);
-    console.log('Usuario registrado:', usuarioNuevo);
+    console.log('Usuario nuevo registrado: ', usuarioNuevo);
+
     return usuarioNuevo;
 }
+
+const datos = pedirDatos();
+registrarUsuario(datos);
 
 // 3.b Función para mostrar todos los usuarios
 function mostrarTodosLosUsuarios() {
@@ -98,26 +114,36 @@ function mostrarTodosLosUsuarios() {
 }
 
 // 3.c Función para buscar un usuario por email
-function buscarUsuario(email) {
-    const resultado = usuarios.find(usuario => usuario.email === email);
-    if (resultado) {
-        console.log('Resultado de búsqueda:', resultado);
-    } else {
-        console.log('No se encontró el usuario.');
-    }
-    return resultado;
+function emailBuscado(){
+    const email = prompt('Ingrese el email del usuario que esta buscando: ');
+    return { email }
 }
 
-// 3.d Función para borrar un usuario
-function borrarUsuario({ nombre, email }) {
-    const index = usuarios.findIndex(usuario => usuario.nombre === nombre && usuario.email === email);
-    if (index !== -1) {
-        usuarios.splice(index, 1);
-        console.log(`El usuario ${nombre} con email ${email} ha sido eliminado.`);
+function buscarUsuario ({ email }) {
+    resultado = usuarios.find(usuario => usuario.email === email);
+
+    if (resultado) {
+        console.log('Resultado de busqueda:' , resultado);
     } else {
-        console.log('No se encontró el usuario para eliminar.');
-    }
+        console.log('Ningún usuario coincide con el email indicado.')
+    };
 }
+
+// para llamar funcion buscarUsuario agegar lieas:
+//  const filtroEmail = emailBuscado()
+//  buscarUsuario(filtroEmail)
+
+// 3.d Función para borrar un usuario
+const usuarioSeleccionado = emailBuscado()
+
+function borrarUsuario({ nombre, email }){
+    const indiceAEliminar = usuarios.indexOf(usuario => usuario.nombre === nombre && usuario.email === email);
+
+    usuarios.splice(indiceAEliminar, 1);
+    console.log(`El usuario ${email} ha sido eliminado`)
+    return ;
+}
+
 
 // IMPORTANTE: este comentario es pura y exclusivamente para avisar que los ultimos dos commits realizados por mi (Lara Gimenez), pertenecen
 // al punto 3 del TPIntegrador. Me confundi al tippear el mensaje en ambos casos.
@@ -200,7 +226,7 @@ function generarReporteLibros() {
 }
 
 // Llamamos la función para ver el reporte
-generarReporteLibros();
+
 
 
 /////////////////////////////////////////////
@@ -215,11 +241,9 @@ function librosConPalabrasEnTitulo(_libros) {
 
     const titulosEncontrados = librosFiltrados.map(libro => libro.titulo);
   
-    console.log(titulosEncontrados)
-    return titulosEncontrados
+    console.log(titulosEncontrados);
+    return titulosEncontrados;
 }
-
-librosConPalabrasEnTitulo(libros)
 
 
 // 7. Función para calcular estadísticas de los libros
@@ -248,7 +272,7 @@ function calcularEstadisticas() {
 }
 
 // Función calcularEstadisticas
-calcularEstadisticas();
+
 
 //8.Manejo de Cadenas
 //Crear una función normalizarDatos() que utilice métodos de strings para:
